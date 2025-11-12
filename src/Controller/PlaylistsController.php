@@ -62,6 +62,8 @@ class PlaylistsController extends AbstractController {
     public function sort($champ, $ordre): Response{
         if($champ == "name") {
             $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+        } elseif($champ == "nbFormations") {
+            $playlists = $this->playlistRepository->findAllOrderByNbFormations($ordre);
         }
         $categories = $this->categorieRepository->findAll();
         return $this->render(self::CHEMIN_PLAYLISTS, [
