@@ -1,0 +1,6 @@
+projectKey=mediatekformation
+serverUrl=https://sonarqube.josephchaouistannard.com
+serverVersion=25.11.0.114957
+dashboardUrl=https://sonarqube.josephchaouistannard.com/dashboard?id=mediatekformation
+ceTaskId=da29d665-8d5e-46fb-ba0f-baba4ec29867
+ceTaskUrl=https://sonarqube.josephchaouistannard.com/api/ce/task?id=da29d665-8d5e-46fb-ba0f-baba4ec29867
