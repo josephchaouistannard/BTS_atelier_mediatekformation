@@ -29,10 +29,12 @@ class Formation
         max: 'now',
         notInRangeMessage: 'La date doit être entre {{ min }} et {{ max }}.'
     )]
+    #[Assert\NotBlank(message: "La saisie d'une date est obligatoire.")]
     private ?\DateTimeInterface $publishedAt = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\Length(max: 100, maxMessage: "Le titre ne peut pas dépasser {{ limit }} caractères.")]
+    #[Assert\NotBlank(message: "La saisie d'un titre est obligatoire.")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -40,9 +42,11 @@ class Formation
 
     #[ORM\Column(length: 20, nullable: true)]
     #[Assert\Length(max: 20, maxMessage: "Le video ID ne peut pas dépasser {{ limit }} caractères.")]
+    #[Assert\NotBlank(message: "La saisie d'un video ID est obligatoire.")]
     private ?string $videoId = null;
 
     #[ORM\ManyToOne(inversedBy: 'formations')]
+    #[Assert\NotBlank(message: "La choix d'un playlist est obligatoire.")]
     private ?Playlist $playlist = null;
 
     /**

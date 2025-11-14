@@ -19,6 +19,7 @@ class Playlist
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\Length(max: 100, maxMessage: "Le name ne peut pas dépasser {{ limit }} caractères.")]
+    #[Assert\NotBlank(message: "La saisie de name est obligatoire.")]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
