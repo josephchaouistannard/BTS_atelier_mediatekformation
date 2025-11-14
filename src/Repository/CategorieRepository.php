@@ -43,5 +43,57 @@ class CategorieRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
-    
+
+    /**
+     * Retourne toutes les catégories triées sur leur nom
+     * @param string $ordre
+     * @return Categorie[]
+     */
+    public function findAllOrderByName($ordre): array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', $ordre)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Retourne toutes les catégories triées sur le nb de formations dans la catégorie
+     * @param string $champ
+     * @param string $ordre
+     * @return Categorie[]
+     */
+    public function findAllOrderByNbFormations($ordre): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftjoin('c.formations', 'f')
+            ->addSelect('COUNT(f.id) AS HIDDEN formationsCount')
+            ->groupBy('c.id')
+            ->orderBy('formationsCount', $ordre)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Enregistrements dont un le champ name contient une valeur
+     * ou tous les enregistrements si la valeur est vide
+     * @param string $valeur
+     * @return Categorie[]
+     */
+    public function findByContainValue($valeur): array
+    {
+        if ($valeur == "") {
+            return $this->findAllOrderByName('ASC');
+        }
+        else {
+            return $this->createQueryBuilder('p')
+                ->leftjoin('p.formations', 'f')
+                ->where('p.name'. ' LIKE :valeur')
+                ->setParameter('valeur', '%' . $valeur . '%')
+                ->groupBy('p.id')
+                ->orderBy('p.name', 'ASC')
+                ->getQuery()
+                ->getResult();
+        }
+    }
 }

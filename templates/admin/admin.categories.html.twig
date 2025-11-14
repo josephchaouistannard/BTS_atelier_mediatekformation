@@ -1,0 +1,88 @@
+{% extends "baseadmin.html.twig" %}
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left align-top" scope="col">
+                    catégorie<br />
+                    <button 
+                        type="button"
+                        class="btn btn-info btn-sm active"
+                        aria-pressed="true"
+                        onclick="window.location='{{ path('admin.categories.sort', {champ:'name', ordre:'ASC'}) }}'">
+                        <
+                    </button>
+                    <button 
+                        type="button"
+                        class="btn btn-info btn-sm active"
+                        aria-pressed="true"
+                        onclick="window.location='{{ path('admin.categories.sort', {champ:'name', ordre:'DESC'}) }}'">
+                        >
+                    </button>
+                    <form class="form-inline mt-1" method="POST" action="{{ path('admin.categories.findallcontain', {champ:'name'}) }}">
+                        <div class="form-group mr-1 mb-2">
+                            <input type="text" class="sm" name="recherche" 
+                                   value="{% if valeur|default and not table|default %}{{ valeur }}{% endif %}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('filtre_name') }}">
+                            <button type="submit" class="btn btn-info mb-2 btn-sm">filtrer</button>
+                        </div>
+                    </form>                    
+                </th>
+                <th>
+                    Nb de formations<br />
+                    <button 
+                        type="button"
+                        class="btn btn-info btn-sm active"
+                        aria-pressed="true"
+                        onclick="window.location='{{ path('admin.categories.sort', {champ:'nbFormations', ordre:'ASC'}) }}'">
+                        <
+                    </button>
+                    <button 
+                        type="button"
+                        class="btn btn-info btn-sm active"
+                        aria-pressed="true"
+                        onclick="window.location='{{ path('admin.categories.sort', {champ:'nbFormations', ordre:'DESC'}) }}'">
+                        >
+                    </button>    
+                </th>
+                <th class="text-center align-top" scope="col">
+                    &nbsp;
+                </th>				
+            </tr>
+        </thead>
+        <tbody>
+            <!-- boucle sur les playlists -->
+            {% if categories|length > 0 %}
+                {% for k in 0..categories|length-1 %}
+                    <tr class="align-middle">
+                        <td>
+                            <h5 class="text-info">
+                                {{ categories[k].name }}
+                            </h5>
+                        </td>                 
+                        <td>
+                            {{ categories[k].formations|length }}
+                        </td>            					
+                        <td>
+                            {% if categories[k].formations is not empty %}
+                                <button class="btn btn-danger disabled" style="pointer-events: auto !important; cursor: pointer !important;"
+                                        onclick="alert('Impossible de supprimer une catégorie qui contient toujours des formations.');">
+                                    Supprimer
+                                </button>
+                            {% else %}
+                                <a href="{{ path('admin.categorie.delete', { id: categories[k].id }) }}"
+                                class="btn btn-danger"
+                                onclick="return confirm('Etes-vous sûr de vouloir supprimer {{ categories[k].name }} ?')">
+                                    Supprimer
+                                </a>
+                            {% endif %}
+                        </td>					
+                    </tr>
+                {% endfor %}	
+            {% endif %}
+        </tbody>
+    </table>
+    <h3>Ajouter une catégorie</h3>
+    {{ form_start(formcategorie) }}
+    {{ form_end(formcategorie) }}
+{% endblock %}
