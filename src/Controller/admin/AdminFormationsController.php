@@ -80,8 +80,8 @@ class AdminFormationsController extends AbstractController
     #[Route('/admin/formation/supprimer/{id}', name: 'admin.formation.delete')]
     public function deleteFormation(int $id): Response
     {
-        $visite = $this->formationRepository->find($id);
-        $this->formationRepository->remove($visite);
+        $formation = $this->formationRepository->find($id);
+        $this->formationRepository->remove($formation);
         return $this->redirectToRoute('admin.formations');
     }
 
