@@ -2,5 +2,5 @@ projectKey=mediatekformation
 serverUrl=https://sonarqube.josephchaouistannard.com
 serverVersion=25.11.0.114957
 dashboardUrl=https://sonarqube.josephchaouistannard.com/dashboard?id=mediatekformation
-ceTaskId=da29d665-8d5e-46fb-ba0f-baba4ec29867
-ceTaskUrl=https://sonarqube.josephchaouistannard.com/api/ce/task?id=da29d665-8d5e-46fb-ba0f-baba4ec29867
+ceTaskId=1e9d7c12-4b6b-4f2d-b6be-35f5529bf6ea
+ceTaskUrl=https://sonarqube.josephchaouistannard.com/api/ce/task?id=1e9d7c12-4b6b-4f2d-b6be-35f5529bf6ea
