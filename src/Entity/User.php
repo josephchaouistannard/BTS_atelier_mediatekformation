@@ -7,40 +7,74 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Représente un utilisateur de l'application.
+ *
+ * Cette entité implémente UserInterface et PasswordAuthenticatedUserInterface
+ * pour la gestion de l'authentification Symfony.
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    /**
+     * L'identifiant unique de l'utilisateur.
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Le nom d'utilisateur (username) de l'utilisateur.
+     *
+     * Ce champ doit être unique.
+     */
     #[ORM\Column(length: 180)]
     private ?string $username = null;
 
     /**
-     * @var list<string> The user roles
+     * Les rôles attribués à l'utilisateur.
+     *
+     * @var list<string> Les rôles de l'utilisateur.
      */
     #[ORM\Column]
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * Le mot de passe haché de l'utilisateur.
+     *
+     * @var string Le mot de passe haché.
      */
     #[ORM\Column]
     private ?string $password = null;
 
+    /**
+     * Retourne l'identifiant de l'utilisateur.
+     *
+     * @return int|null L'identifiant de l'utilisateur.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Retourne le nom d'utilisateur de l'utilisateur.
+     *
+     * @return string|null Le nom d'utilisateur.
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * Définit le nom d'utilisateur de l'utilisateur.
+     *
+     * @param string $username Le nouveau nom d'utilisateur.
+     * @return static L'instance actuelle de l'utilisateur.
+     */
     public function setUsername(string $username): static
     {
         $this->username = $username;
@@ -49,9 +83,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
+     * Retourne l'identifiant visuel qui représente cet utilisateur.
      *
      * @see UserInterface
+     * @return string L'identifiant de l'utilisateur (son nom d'utilisateur).
      */
     public function getUserIdentifier(): string
     {
@@ -59,9 +94,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @see UserInterface
+     * Retourne les rôles de l'utilisateur.
      *
-     * @return list<string>
+     * Garantit que chaque utilisateur a au moins le rôle 'ROLE_USER'.
+     *
+     * @see UserInterface
+     * @return list<string> Les rôles de l'utilisateur.
      */
     public function getRoles(): array
     {
@@ -73,7 +111,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param list<string> $roles
+     * Définit les rôles de l'utilisateur.
+     *
+     * @param list<string> $roles Les nouveaux rôles de l'utilisateur.
+     * @return static L'instance actuelle de l'utilisateur.
      */
     public function setRoles(array $roles): static
     {
@@ -83,13 +124,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Retourne le mot de passe haché de l'utilisateur.
+     *
      * @see PasswordAuthenticatedUserInterface
+     * @return string Le mot de passe haché.
      */
     public function getPassword(): string
     {
         return $this->password;
     }
 
+    /**
+     * Définit le mot de passe de l'utilisateur.
+     *
+     * @param string $password Le nouveau mot de passe haché.
+     * @return static L'instance actuelle de l'utilisateur.
+     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -98,7 +148,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Efface les informations sensibles temporaires de l'utilisateur.
+     *
+     * Cette méthode est appelée après l'authentification pour nettoyer les données
+     * qui ne doivent pas être stockées de manière persistante (ex: mot de passe en clair).
+     *
      * @see UserInterface
+     * @return void
      */
     public function eraseCredentials(): void
     {

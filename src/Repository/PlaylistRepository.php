@@ -7,21 +7,43 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Dépôt pour l'entité Playlist.
+ *
+ * Fournit des méthodes pour interagir avec les objets Playlist dans la base de données,
+ * incluant des fonctionnalités de tri et de recherche.
+ *
  * @extends ServiceEntityRepository<Playlist>
  */
 class PlaylistRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructeur de la classe PlaylistRepository.
+     *
+     * @param ManagerRegistry $registry Le registre du gestionnaire d'entités.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Playlist::class);
     }
 
+    /**
+     * Ajoute une nouvelle playlist ou met à jour une playlist existante.
+     *
+     * @param Playlist $entity L'entité Playlist à ajouter ou mettre à jour.
+     * @return void
+     */
     public function add(Playlist $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Supprime une playlist de la base de données.
+     *
+     * @param Playlist $entity L'entité Playlist à supprimer.
+     * @return void
+     */
     public function remove(Playlist $entity): void
     {
         $this->getEntityManager()->remove($entity);
@@ -29,10 +51,10 @@ class PlaylistRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne toutes les playlists triées sur le nom de la playlist
-     * @param string $champ
-     * @param string $ordre
-     * @return Playlist[]
+     * Retourne toutes les playlists triées par leur nom.
+     *
+     * @param string $ordre L'ordre de tri ('ASC' pour ascendant, 'DESC' pour descendant).
+     * @return Playlist[] Un tableau d'objets Playlist.
      */
     public function findAllOrderByName($ordre): array
     {
@@ -45,12 +67,13 @@ class PlaylistRepository extends ServiceEntityRepository
     }
 
     /**
-     * Enregistrements dont un champ contient une valeur
-     * ou tous les enregistrements si la valeur est vide
-     * @param string $champ
-     * @param string $valeur
-     * @param string $table si $champ dans une autre table
-     * @return Playlist[]
+     * Recherche les playlists dont un champ contient une valeur spécifique.
+     * Si la valeur est vide, toutes les playlists triées par nom ascendant sont retournées.
+     *
+     * @param string $champ Le champ sur lequel appliquer le filtre (ex: 'name', 'description').
+     * @param string $valeur La valeur à rechercher.
+     * @param string $table Le nom de la table si le champ de recherche se trouve dans une entité liée (ex: 'categories').
+     * @return Playlist[] Un tableau d'objets Playlist correspondant à la recherche.
      */
     public function findByContainValue($champ, $valeur, $table = ""): array
     {
@@ -80,10 +103,10 @@ class PlaylistRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne toutes les playlists triées sur le nb de formations dans la playlist
-     * @param string $champ
-     * @param string $ordre
-     * @return Playlist[]
+     * Retourne toutes les playlists triées par le nombre de formations qu'elles contiennent.
+     *
+     * @param string $ordre L'ordre de tri ('ASC' pour ascendant, 'DESC' pour descendant).
+     * @return Playlist[] Un tableau d'objets Playlist.
      */
     public function findAllOrderByNbFormations($ordre): array
     {

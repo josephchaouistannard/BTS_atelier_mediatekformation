@@ -13,8 +13,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use DateTime;
 
+/**
+ * Formulaire pour la gestion des entités Formation.
+ *
+ * Ce formulaire permet de créer ou de modifier une formation,
+ * en incluant des champs pour la date de publication, le titre, la description,
+ * l'identifiant vidéo YouTube, la playlist associée et les catégories.
+ */
 class FormationType extends AbstractType
 {
+    /**
+     * Construit le formulaire pour l'entité Formation.
+     *
+     * Ajoute les champs 'publishedAt', 'title', 'description', 'videoId',
+     * 'playlist', 'categories' et un bouton de soumission 'submit'.
+     *
+     * @param FormBuilderInterface $builder Le constructeur de formulaire.
+     * @param array $options Les options du formulaire.
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -47,6 +64,14 @@ class FormationType extends AbstractType
         ;
     }
 
+    /**
+     * Configure les options par défaut pour ce type de formulaire.
+     *
+     * Définit la classe de données associée à ce formulaire comme étant Formation.
+     *
+     * @param OptionsResolver $resolver Le résolveur d'options.
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
