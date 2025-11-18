@@ -14,6 +14,6 @@ jobs:
         key: ${{ secrets.SERVER_KEY }}
         script: |
           cd /var/www/mediatekformation
-          git pull origin main
+          sudo git pull origin main
           sudo -u www-data composer install
           sudo chown -R www-data:www-data .
