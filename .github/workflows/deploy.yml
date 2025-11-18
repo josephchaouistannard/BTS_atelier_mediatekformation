@@ -15,6 +15,6 @@ jobs:
         script: |
           git config --global --add safe.directory /var/www/mediatekformation
           cd /var/www/mediatekformation
-          sudo git pull origin main
+          sudo git pull origin master
           sudo -u www-data composer install
           sudo chown -R www-data:www-data .
