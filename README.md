@@ -3,6 +3,10 @@
 Ce projet fait partie d'un atelier de professionnalisation dans le cadre de mon BTS SIO SLAM.
 Vous pouvez voir dans le [dépôt d'origine](https://github.com/CNED-SLAM/mediatekformation) l'application existante avant je l'ai fait évoluer.
 
+Le site est disponbible en ligne à [mediatekformation.josephchaouistannard.com](https://mediatekformation.josephchaouistannard.com).
+
+La documentation est disponbible à [mediatekformationdocs.josephchaouistannard.com](https://mediatekformationdocs.josephchaouistannard.com).
+
 ## Présentation
 Ce site, développé avec Symfony 6.4, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques et qui sont aussi accessibles sur YouTube.<br> 
 Elle contient les fonctionnalités globales suivantes :<br>
