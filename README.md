@@ -1,10 +1,14 @@
 # Mediatekformation
+
+Ce projet fait partie d'un atelier de professionnalisation dans le cadre de mon BTS SIO SLAM.
+Vous pouvez voir dans le [dépôt d'origine](https://github.com/CNED-SLAM/mediatekformation) l'application existante avant je l'ai fait évoluer.
+
 ## Présentation
 Ce site, développé avec Symfony 6.4, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques et qui sont aussi accessibles sur YouTube.<br> 
-Actuellement, seule la partie front office a été développée. Elle contient les fonctionnalités globales suivantes :<br>
-![img1](https://github.com/user-attachments/assets/9c5c503b-738d-40cf-ba53-36ba4c0209e8)
+Elle contient les fonctionnalités globales suivantes :<br>
+![cas d&#39;utilisation](https://github.com/user-attachments/assets/02098210-e844-4474-ae57-ab07c4824dc0)
 ## Les différentes pages
-Voici les 5 pages correspondant aux différents cas d’utilisation.
+Voici les 11 pages correspondant aux différents cas d’utilisation.
 ### Page 1 : l'accueil
 Cette page présente le fonctionnement du site et les 2 dernières vidéos mises en ligne.<br>
 La partie du haut contient une bannière (logo, nom et phrase présentant le but du site) et le menu permettant d'accéder aux 3 pages principales (Accueil, Formations, Playlists).<br>
@@ -40,19 +44,53 @@ La partie haute est identique à la page d'accueil (bannière et menu).<br>
 La partie centrale contient un tableau composé de 3 colonnes :<br>
 •	La 1ère colonne ("playlist") contient le nom de chaque playlist.<br>
 •	La 2ème colonne ("catégories") contient la ou les catégories concernées par chaque playlist (langage…).<br>
-•	La 3ème contient un bouton pour accéder à la page de présentation de la playlist.<br>
+•	La 3ème contient le nombre de formations présent dans chaque playlist.<br>
+•	La 4ème contient un bouton pour accéder à la page de présentation de la playlist.<br>
 Au niveau de la colonne "playlist", 2 boutons permettent de trier les lignes en ordre croissant ("<") ou décroissant (">"). Il est aussi possible de filtrer les lignes en tapant un texte : seuls les lignes qui contiennent ce texte sont affichées. Si la zone est vide, le fait de cliquer sur "filtrer" permet de retrouver la liste complète.<br> 
 Au niveau de la catégorie, la sélection d'une catégorie dans le combo permet d'afficher uniquement les playlists qui ont cette catégorie. Le fait de sélectionner la ligne vide du combo permet d'afficher à nouveau toutes les playlists.<br>
+Au niveau du nombre de formation 2 boutons permettent de trier les lignes en ordre croissant ("<") ou décroissant (">").<br>
 Par défaut la liste est triée sur le nom de la playlist.<br>
 Cliquer sur le bouton "voir détail" d'une playlist permet d'accéder à la page 5 qui présente le détail de la playlist concernée.<br>
-![img5](https://github.com/user-attachments/assets/bbe8934f-8d4b-4da2-8216-60b96b726d8a)
+<img width="1317" height="667" alt="page playlists" src="https://github.com/user-attachments/assets/96c905f3-037b-4dd5-9956-5311f955bf09" />
+
 ### Page 5 : détail d'une playlist
 Cette page n'est pas accessible par le menu mais uniquement en cliquant sur un bouton "voir détail" dans la page "Playlists".<br>
 La partie haute est identique à la page d'accueil (bannière et menu).<br>
 La partie centrale est séparée en 2 parties :<br>
-•	La partie gauche contient les informations de la playlist (titre, liste des catégories, description).<br>
+•	La partie gauche contient les informations de la playlist (titre, liste des catégories, nombre de formations, description).<br>
 •	La partie droite contient la liste des formations contenues dans la playlist (miniature et titre) avec possibilité de cliquer sur une formation pour aller dans la page de la formation.<br>
-![img6](https://github.com/user-attachments/assets/f216a9e7-084a-4683-9b4e-cada5574a0e2)
+<img width="1315" height="799" alt="page playlist" src="https://github.com/user-attachments/assets/cb700613-8916-48e2-a373-4ee216d6766d" />
+
+### Page 6 : la gestion des formations
+Cette page est comme la pages pour consulter les formations sauf:
+- Une bouton pour ajouter une nouvelle formation à été ajouté en haut à gauche.
+- Le lien pour voir le détail d'une formation à été remplacé par des boutons pour modifier ou supprimer chaque formation.
+<img width="1321" height="735" alt="adminformations" src="https://github.com/user-attachments/assets/786ef976-11e5-47f7-9b52-edcbaea159cb" />
+
+### Page 7 : le formulaire d'ajout/modification d'une formation
+<img width="1326" height="938" alt="formformation" src="https://github.com/user-attachments/assets/25e85a25-cff6-4c64-96db-c72af3d8b69d" />
+
+### Page 8 : la gestion des playlists
+Cette page est comme la pages pour consulter les playlists sauf:
+- Une bouton pour ajouter une nouvelle playlist à été ajouté en haut à gauche.
+- Le lien pour voir le détail d'une playlist à été remplacé par des boutons pour modifier ou supprimer chaque playlist.
+Il est seulement possible de supprimer une playlist quand il ne contient pas de formations.
+<img width="1311" height="761" alt="adminplaylists" src="https://github.com/user-attachments/assets/fb812eb8-72b5-4f17-976c-700e95432484" />
+
+### Page 9 : le formulaire d'ajout/modification d'une playlist
+<img width="1331" height="619" alt="formplaylists" src="https://github.com/user-attachments/assets/e3a57c08-8549-4d57-93b4-357a4301b1e4" />
+
+### Page 10 : la gestion des categories
+Cette page liste les catégories, avec pour chaque son nom, le nombre de formations et un bouton pour la suprimmer.<br>
+On peut trier et filter les noms des catégories comme pour les formations et playlists, et on peut trier le nombre de formations.<br>
+Il est seulement possible de supprimer une catégorie quand il ne contient pas de formations.
+<img width="1323" height="1040" alt="admincategories" src="https://github.com/user-attachments/assets/07fc2d97-dad0-4af6-916c-b49a30ba07ed" />
+
+### Page 11 : connexion
+Ce formulaire de connexion s'affiche quand on accède à '/admin'. Il permet de se connecter à la partie gestion.
+<img width="1320" height="238" alt="login" src="https://github.com/user-attachments/assets/e3ca772e-0013-434a-99ef-235409a8198e" />
+
+
 ## La base de données
 La base de données exploitée par le site est au format MySQL.
 ### Schéma conceptuel de données
@@ -77,10 +115,13 @@ Remarques :
 Les clés primaires des entités sont en auto-incrémentation.<br>
 Le chemin des images (des 2 tailles) n'est pas mémorisé dans la BDD car il peut être fabriqué de la façon suivante :<br>
 "https://i.ytimg.com/vi/" suivi de, soit "/default.jpg" (pour la miniature), soit "/hqdefault.jpg" (pour l'image plus grande de la page d'accueil).
+<br><br>
+**Ce schema n'a pas été modifie au cours des évolutions. Il y a juste une table 'User' en plus qui contient les comptes administrateurs.**
+
 ## Test de l'application en local
 - Vérifier que Composer, Git et Wamserver (ou équivalent) sont installés sur l'ordinateur.
 - Télécharger le code et le dézipper dans www de Wampserver (ou dossier équivalent) puis renommer le dossier en "mediatekformation".<br>
 - Ouvrir une fenêtre de commandes en mode admin, se positionner dans le dossier du projet et taper "composer install" pour reconstituer le dossier vendor.<br>
 - Dans phpMyAdmin, se connecter à MySQL en root sans mot de passe et créer la BDD 'mediatekformation'.<br>
-- Récupérer le fichier mediatekformation.sql en racine du projet et l'utiliser pour remplir la BDD (si vous voulez mettre un login/pwd d'accès, il faut créer un utilisateur, lui donner les droits sur la BDD et il faut le préciser dans le fichier ".env" en racine du projet).<br>
+- Récupérer le fichier mediatekformationfinale.sql en racine du projet et l'utiliser pour remplir la BDD (si vous voulez mettre un login/pwd d'accès, il faut créer un utilisateur, lui donner les droits sur la BDD et il faut le préciser dans le fichier ".env" en racine du projet).<br>
 - De préférence, ouvrir l'application dans un IDE professionnel. L'adresse pour la lancer est : http://localhost/mediatekformation/public/index.php<br>
